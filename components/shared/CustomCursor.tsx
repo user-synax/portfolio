@@ -1,8 +1,9 @@
 'use client'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { gsap } from '@/lib/gsap'
 
 export default function CustomCursor() {
+  const [isMobile, setIsMobile] = useState(false)
   const dotRef = useRef<HTMLDivElement>(null)
   const circleRef = useRef<HTMLDivElement>(null)
   const x = useRef(0)
@@ -11,6 +12,19 @@ export default function CustomCursor() {
   const circleY = useRef({ y: 0 })
 
   useEffect(() => {
+    // Check if device is mobile/touch
+    const checkMobile = () => {
+      const isTouchDevice = 'ontouchstart' in window || window.matchMedia('(hover: none)').matches
+      setIsMobile(isTouchDevice)
+    }
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+
+  useEffect(() => {
+    // Don't initialize cursor on mobile
+    if (isMobile) return
     // Hide default cursor
     document.body.style.cursor = 'none'
 
@@ -113,7 +127,10 @@ export default function CustomCursor() {
       window.removeEventListener('mouseover', handleMouseOver)
       window.removeEventListener('mouseout', handleMouseOut)
     }
-  }, [])
+  }, [isMobile])
+
+  // Don't render cursor on mobile/touch devices
+  if (isMobile) return null
 
   return (
     <>
