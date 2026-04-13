@@ -1,7 +1,7 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
 import { gsap } from '@/lib/gsap'
-import { Menu, X } from 'lucide-react'
+import { Menu, X, Terminal } from 'lucide-react'
 import { TextScramble } from '@/components/shared/TextScramble'
 
 export default function Navbar() {
@@ -103,9 +103,10 @@ export default function Navbar() {
                 (window as any).handleLogoTap()
               }
             }}
-            className="font-['var(--font-dm-serif)'] text-2xl text-[#f0ede6] hover:text-[#c8a97e] transition-colors relative z-10"
+            className="flex items-center gap-2 text-[#f0ede6] hover:text-[#c8a97e] transition-colors relative z-10"
           >
-            Ayush
+            <Terminal className="w-8 h-8" />
+            <span className="font-['var(--font-dm-serif)'] text-2xl">Ayush</span>
           </a>
           
           {/* Desktop nav links */}

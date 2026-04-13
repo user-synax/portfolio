@@ -18,17 +18,17 @@ const dmMono = DM_Mono({
 })
 
 export const metadata = {
-  title: 'Portfolio | Full-Stack Developer',
+  title: "Ayush's Portfolio | Full-Stack Developer",
   description: 'Building thoughtful digital products at the intersection of engineering and design. Full-stack developer specializing in React, Next.js, and TypeScript.',
   openGraph: {
-    title: 'Portfolio | Full-Stack Developer',
+    title: "Ayush's Portfolio | Full-Stack Developer",
     description: 'Building thoughtful digital products at the intersection of engineering and design.',
     type: 'website',
     locale: 'en_US',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Portfolio | Full-Stack Developer',
+    title: "Ayush's Portfolio | Full-Stack Developer",
     description: 'Building thoughtful digital products at the intersection of engineering and design.',
   },
 }
