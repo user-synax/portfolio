@@ -1,36 +1,99 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio
+
+A modern portfolio site built with Next.js, featuring smooth GSAP animations, dark theme, and a contact form powered by Resend.
+
+## Tech Stack
+
+- **Framework**: Next.js 16 (App Router)
+- **Styling**: Tailwind CSS 4
+- **Animations**: GSAP with ScrollTrigger
+- **Fonts**: DM Serif Display & DM Mono (next/font/google)
+- **Forms**: React Hook Form + Zod validation
+- **Email**: Resend API
+- **UI Components**: shadcn/ui
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 18+ installed
+- Resend API key (for contact form)
+
+### Environment Variables
+
+Create a `.env.local` file in the root directory:
+
+```env
+RESEND_API_KEY=your_resend_api_key_here
+CONTACT_EMAIL=your-email@example.com
+```
+
+To get a Resend API key:
+1. Sign up at [resend.com](https://resend.com)
+2. Go to API Keys in your dashboard
+3. Create a new API key
+4. Add it to your `.env.local` file
+
+### Installation
+
+```bash
+npm install
+```
+
+### Development
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) with your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Deployment
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Deploy to Vercel
 
-## Learn More
+1. Push your code to GitHub
+2. Import your repository in [Vercel](https://vercel.com/new)
+3. Add environment variables in Vercel dashboard:
+   - `RESEND_API_KEY`: Your Resend API key
+   - `CONTACT_EMAIL`: Your email address for receiving contact form submissions
+4. Deploy
 
-To learn more about Next.js, take a look at the following resources:
+The site will be automatically built and deployed with zero configuration.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Project Structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+app/
+├── layout.tsx          # Root layout with fonts and theme provider
+├── page.tsx            # Main page composing all sections
+├── globals.css         # Global styles
+└── api/
+    └── contact/
+        └── route.ts    # Resend email handler
 
-## Deploy on Vercel
+components/
+├── ui/                 # shadcn/ui components
+├── sections/           # Page sections
+│   ├── Hero.tsx
+│   ├── About.tsx
+│   ├── Projects.tsx
+│   └── Contact.tsx
+└── shared/
+    ├── NoiseCanvas.tsx # Global noise overlay
+    └── Navbar.tsx      # Navigation with scroll effects
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+lib/
+├── utils.ts            # Utility functions
+└── gsap.ts             # GSAP plugin registration
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Features
+
+- **Hero Section**: Animated name reveal with stagger effects
+- **About Section**: Skills grid, animated stats counters, timeline
+- **Projects Section**: Interactive cards with hover effects, drawer details
+- **Contact Section**: Form validation, loading states, success animations
+- **Navbar**: Smooth scroll, backdrop blur on scroll
+- **Dark Theme**: Built-in theme switching with next-themes
+- **Noise Overlay**: Subtle canvas-based noise effect
