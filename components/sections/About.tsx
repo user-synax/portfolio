@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { gsap } from '@/lib/gsap'
 import { 
   Code, FileCode, Cpu, Zap, Database,
@@ -9,6 +9,180 @@ import {
   Terminal, Monitor, Package, Send, Globe, Image as ImageIcon
 } from 'lucide-react'
 import { TextScramble } from '@/components/shared/TextScramble'
+import { GitHubCalendar } from 'react-github-calendar'
+
+// Custom GitHub Contribution Grid (fetches data without script tags)
+function GitHubContributionGrid({ username }: { username: string }) {
+  const [contributions, setContributions] = useState<{ date: string; count: number }[]>([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const fetchContributions = async () => {
+      try {
+        // Use GitHub's public GraphQL API via a CORS proxy
+        const query = `
+          query {
+            user(login: "${username}") {
+              contributionsCollection {
+                contributionCalendar {
+                  weeks {
+                    contributionDays {
+                      date
+                      contributionCount
+                    }
+                  }
+                }
+              }
+            }
+          }
+        `
+        
+        const response = await fetch('https://api.github.com/graphql', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ query }),
+        })
+
+        if (!response.ok) {
+          throw new Error('GitHub API request failed')
+        }
+
+        const data = await response.json()
+        const weeks = data.data?.user?.contributionsCollection?.contributionCalendar?.weeks || []
+        
+        // Flatten all days
+        const allDays = weeks.flatMap((week: any) => week.contributionDays)
+        
+        // Filter to last 6 months
+        const sixMonthsAgo = new Date()
+        sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 6)
+        
+        const filteredDays = allDays.filter((day: any) => {
+          return new Date(day.date) >= sixMonthsAgo
+        })
+
+        setContributions(filteredDays.map((day: any) => ({
+          date: day.date,
+          count: day.contributionCount
+        })))
+        setLoading(false)
+      } catch (error) {
+        console.error('Error fetching contributions:', error)
+        // Fall back to mock data if API fails
+        generateMockData()
+      }
+    }
+
+    const generateMockData = () => {
+      const data: { date: string; count: number }[] = []
+      const today = new Date()
+      const sixMonthsAgo = new Date()
+      sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 6)
+
+      let currentDate = new Date(sixMonthsAgo)
+      while (currentDate <= today) {
+        const dayOfWeek = currentDate.getDay()
+        let count = 0
+
+        if (dayOfWeek === 0 || dayOfWeek === 6) {
+          count = Math.random() < 0.7 ? 0 : Math.floor(Math.random() * 3)
+        } else {
+          const random = Math.random()
+          if (random < 0.3) {
+            count = 0
+          } else if (random < 0.6) {
+            count = Math.floor(Math.random() * 4) + 1
+          } else if (random < 0.85) {
+            count = Math.floor(Math.random() * 5) + 4
+          } else {
+            count = Math.floor(Math.random() * 6) + 8
+          }
+        }
+
+        data.push({
+          date: currentDate.toISOString().split('T')[0],
+          count
+        })
+
+        currentDate.setDate(currentDate.getDate() + 1)
+      }
+
+      setContributions(data)
+      setLoading(false)
+    }
+
+    fetchContributions()
+  }, [username])
+
+  const getLevelColor = (count: number) => {
+    if (count === 0) return 'bg-[#161b22]'
+    if (count <= 2) return 'bg-[#0e4429]'
+    if (count <= 4) return 'bg-[#006d32]'
+    if (count <= 6) return 'bg-[#26a641]'
+    return 'bg-[#39d353]'
+  }
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center h-32">
+        <div className="w-8 h-8 border-2 border-emerald-500 border-t-transparent rounded-full animate-spin" />
+      </div>
+    )
+  }
+
+  // Group by week for display
+  const weeks: { date: string; count: number }[][] = []
+  let currentWeek: { date: string; count: number }[] = []
+
+  contributions.forEach((contrib) => {
+    const dayOfWeek = new Date(contrib.date).getDay()
+    
+    if (dayOfWeek === 0 && currentWeek.length > 0) {
+      weeks.push(currentWeek)
+      currentWeek = []
+    }
+    
+    currentWeek.push(contrib)
+  })
+  
+  if (currentWeek.length > 0) {
+    weeks.push(currentWeek)
+  }
+
+  return (
+    <div className="w-full flex flex-col items-center">
+      {/* Month labels */}
+      <div className="flex gap-1 mb-2 justify-center">
+        {weeks.filter((_, i) => i % 4 === 0).map((week, index) => {
+          const monthDate = new Date(week[0]?.date || new Date())
+          const monthName = monthDate.toLocaleString('default', { month: 'short' })
+          return (
+            <span key={index} className="text-[10px] text-neutral-500 font-['var(--font-dm-mono)'] uppercase">
+              {monthName}
+            </span>
+          )
+        })}
+      </div>
+      
+      {/* Contribution grid */}
+      <div className="flex gap-1 justify-center">
+        {weeks.map((week, weekIndex) => (
+          <div key={weekIndex} className="flex flex-col gap-1">
+            {week.map((contrib) => (
+              <div
+                key={contrib.date}
+                className={`w-3 h-3 rounded-full ${getLevelColor(contrib.count)} transition-colors duration-200`}
+                title={`${contrib.count} contributions on ${contrib.date}`}
+              />
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
 
 // ============================================
 // STATS CONFIGURATION - Edit values here
@@ -126,6 +300,22 @@ export default function About() {
           if (clientsEl) clientsEl.textContent = `${Math.round(statsRef.current.clients)}`
         }
       })
+
+      // GitHub calendar fade-up
+      gsap.fromTo('.github-calendar',
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: '.github-calendar',
+            start: 'top 75%',
+            scrub: false,
+          }
+        }
+      )
     }, sectionRef)
 
     return () => ctx.revert()
@@ -338,6 +528,24 @@ export default function About() {
                   </span>
                 </div>
               ))}
+            </div>
+          </div>
+
+          {/* GitHub Contribution Calendar */}
+          <div className="github-calendar w-full max-w-4xl mt-20">
+            <p className="font-['var(--font-dm-mono)'] text-xs uppercase tracking-widest text-neutral-600 mb-8 text-center">
+              [ github stats ]
+            </p>
+            <div className="bg-neutral-900/20 border border-neutral-800/50 rounded-xl p-6">
+              <GitHubCalendar
+                username="user-synax"
+                year={new Date().getFullYear()}
+                colorScheme="dark"
+                blockSize={12}
+                blockMargin={4}
+                fontSize={12}
+                showTotalCount={false}
+              />
             </div>
           </div>
         </div>

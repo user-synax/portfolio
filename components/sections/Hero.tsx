@@ -1,8 +1,8 @@
-'use client'
-import { useEffect, useRef } from 'react'
-import { gsap } from '@/lib/gsap'
-import { useMagnetic } from '@/hooks/useMagnetic'
-import { TextScramble } from '@/components/shared/TextScramble'
+"use client"
+import { useEffect, useRef } from "react"
+import { gsap } from "@/lib/gsap"
+import { useMagnetic } from "@/hooks/useMagnetic"
+import { TextScramble } from "@/components/shared/TextScramble"
 
 export default function Hero() {
   const containerRef = useRef<HTMLElement>(null)

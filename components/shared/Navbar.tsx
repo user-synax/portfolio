@@ -133,6 +133,12 @@ export default function Navbar() {
               <TextScramble text="Contact" />
             </a>
             <a
+              href="/terminal"
+              className="font-['var(--font-dm-mono)'] text-xs uppercase tracking-wider text-neutral-400 hover:text-[#f0ede6] transition-colors"
+            >
+              <TextScramble text="Terminal" />
+            </a>
+            <a
               href="https://github.com/user-synax"
               target="_blank"
               rel="noopener noreferrer"
@@ -209,6 +215,18 @@ export default function Navbar() {
               }}
             >
               Contact
+            </a>
+            <a
+              href="/terminal"
+              className="mobile-nav-link font-['var(--font-dm-serif)'] text-6xl md:text-7xl text-[#f0ede6] hover:text-[#c8a97e] transition-colors"
+              style={{
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundImage: 'linear-gradient(90deg, #f0ede6 50%, transparent 50%)',
+                backgroundSize: '200% 100%',
+              }}
+            >
+              Terminal
             </a>
             <a
               href="https://github.com/user-synax"
