@@ -330,64 +330,50 @@ export default function About() {
     tools: {
       label: 'Tools',
       items: [
-        { name: 'Git', icon: 'GitBranch' },
-        // { name: 'Docker', icon: 'Container' },
-        // { name: 'AWS', icon: 'Cloud' },
-        { name: 'Vercel', icon: 'Rocket' },
-        { name: 'PostgreSQL', icon: 'Database' },
-        { name: 'MongoDB', icon: 'Database' },
-        { name: 'GitHub', icon: 'Globe' },
-        { name: 'Linux', icon: 'Monitor' },
-        // { name: 'Netlify', icon: 'Cloud' },
-        { name: 'npm', icon: 'Package' },
-        // { name: 'Postman', icon: 'Send' },
-        { name: 'VSCode', icon: 'FileCode' },
+        { name: 'Git', icon: 'https://skillicons.dev/icons?i=git' },
+        { name: 'Vercel', icon: 'https://skillicons.dev/icons?i=vercel' },
+        { name: 'PostgreSQL', icon: 'https://skillicons.dev/icons?i=postgresql' },
+        { name: 'MongoDB', icon: 'https://skillicons.dev/icons?i=mongodb' },
+        { name: 'GitHub', icon: 'https://skillicons.dev/icons?i=github' },
+        { name: 'Linux', icon: 'https://skillicons.dev/icons?i=linux' },
+        { name: 'npm', icon: 'https://skillicons.dev/icons?i=npm' },
+        { name: 'VSCode', icon: 'https://skillicons.dev/icons?i=vscode' },
       ]
     },
     languages: {
       label: 'Languages',
       items: [
-        { name: 'TypeScript', icon: 'Code' },
-        { name: 'JavaScript', icon: 'FileCode' },
-        { name: 'Python', icon: 'Cpu' },
-        { name: 'HTML5', icon: 'Code' },
-        { name: 'CSS', icon: 'Layout' },
-        { name: 'Bash', icon: 'Terminal' },
+        { name: 'TypeScript', icon: 'https://skillicons.dev/icons?i=typescript' },
+        { name: 'JavaScript', icon: 'https://skillicons.dev/icons?i=javascript' },
+        { name: 'Python', icon: 'https://skillicons.dev/icons?i=python' },
+        { name: 'HTML5', icon: 'https://skillicons.dev/icons?i=html' },
+        { name: 'CSS', icon: 'https://skillicons.dev/icons?i=css' },
+        { name: 'Bash', icon: 'https://skillicons.dev/icons?i=bash' },
       ]
     },
     frameworks: {
       label: 'Frameworks',
       items: [
-        { name: 'React', icon: 'Atom' },
-        { name: 'Next.js', icon: 'Layers' },
-        { name: 'Node.js', icon: 'Server' },
-        { name: 'Express', icon: 'Box' },
-        { name: 'Bootstrap', icon: 'Layout' },
+        { name: 'React', icon: 'https://skillicons.dev/icons?i=react' },
+        { name: 'Next.js', icon: 'https://skillicons.dev/icons?i=nextjs' },
+        { name: 'Node.js', icon: 'https://skillicons.dev/icons?i=nodejs' },
+        { name: 'Express', icon: 'https://skillicons.dev/icons?i=express' },
+        { name: 'Bootstrap', icon: 'https://skillicons.dev/icons?i=bootstrap' },
       ]
     },
     design: {
       label: 'Design',
       items: [
-        { name: 'TailwindCSS', icon: 'Palette' },
-        { name: 'Figma', icon: 'PenTool' },
-        { name: 'GSAP', icon: 'Play' },
-        { name: 'Photoshop', icon: 'ImageIcon' },
+        { name: 'TailwindCSS', icon: 'https://skillicons.dev/icons?i=tailwind' },
+        { name: 'Figma', icon: 'https://skillicons.dev/icons?i=figma' },
+        { name: 'GSAP', icon: 'https://skillicons.dev/icons?i=greensock' },
+        { name: 'Photoshop', icon: 'https://skillicons.dev/icons?i=ps' },
       ]
     }
   }
 
-  // Icon mapping
-  const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
-    Code, FileCode, Cpu, Zap, Database,
-    Atom, Layers, Server, Box, Bolt,
-    GitBranch, Container, Cloud, Rocket, PenTool,
-    Palette, Layout, Play, Move3D, FileText,
-    Terminal, Monitor, Package, Send, Globe, ImageIcon
-  }
-
-  const SkillIcon = ({ iconName, className }: { iconName: string; className?: string }) => {
-    const Icon = iconMap[iconName]
-    return Icon ? <Icon className={className} /> : null
+  const SkillIcon = ({ iconUrl, className }: { iconUrl: string; className?: string }) => {
+    return <img src={iconUrl} alt="skill icon" className={className} />
   }
 
   return (
@@ -477,8 +463,8 @@ export default function About() {
                   key={skill.name}
                   className="skill-item flex flex-col items-center justify-center gap-2 p-4 bg-neutral-900/30 border border-neutral-800 rounded-lg hover:border-[#10b981]/80 hover:bg-neutral-800/60 transition-all duration-300 w-24 h-24"
                 >
-                  <SkillIcon iconName={skill.icon} className="w-6 h-6 text-[#10b981]" />
-                  <span className="font-['var(--font-dm-mono)'] text-[10px] text-neutral-400 text-center leading-tight">
+                  <SkillIcon iconUrl={skill.icon} className="w-6 h-6" />
+                  <span className="font-['var(--font-dm-serif)'] text-[10px] text-neutral-400 text-center leading-tight">
                     {skill.name}
                   </span>
                 </div>
@@ -492,8 +478,8 @@ export default function About() {
                   key={skill.name}
                   className="skill-item flex flex-col items-center justify-center gap-2 p-4 bg-neutral-900/30 border border-neutral-800 rounded-lg hover:border-[#c8a97e]/80 hover:bg-neutral-800/60 transition-all duration-300 w-24 h-24"
                 >
-                  <SkillIcon iconName={skill.icon} className="w-6 h-6 text-[#c8a97e]" />
-                  <span className="font-['var(--font-dm-mono)'] text-[10px] text-neutral-400 text-center leading-tight">
+                  <SkillIcon iconUrl={skill.icon} className="w-6 h-6" />
+                  <span className="font-['var(--font-dm-serif)'] text-[10px] text-neutral-400 text-center leading-tight">
                     {skill.name}
                   </span>
                 </div>
@@ -507,8 +493,8 @@ export default function About() {
                   key={skill.name}
                   className="skill-item flex flex-col items-center justify-center gap-2 p-4 bg-neutral-900/30 border border-neutral-800 rounded-lg hover:border-[#8b5cf6]/80 hover:bg-neutral-800/60 transition-all duration-300 w-24 h-24"
                 >
-                  <SkillIcon iconName={skill.icon} className="w-6 h-6 text-[#8b5cf6]" />
-                  <span className="font-['var(--font-dm-mono)'] text-[10px] text-neutral-400 text-center leading-tight">
+                  <SkillIcon iconUrl={skill.icon} className="w-6 h-6" />
+                  <span className="font-['var(--font-dm-serif)'] text-[10px] text-neutral-400 text-center leading-tight">
                     {skill.name}
                   </span>
                 </div>
@@ -522,8 +508,8 @@ export default function About() {
                   key={skill.name}
                   className="skill-item flex flex-col items-center justify-center gap-2 p-4 bg-neutral-900/30 border border-neutral-800 rounded-lg hover:border-[#ec4899]/80 hover:bg-neutral-800/60 transition-all duration-300 w-24 h-24"
                 >
-                  <SkillIcon iconName={skill.icon} className="w-6 h-6 text-[#ec4899]" />
-                  <span className="font-['var(--font-dm-mono)'] text-[10px] text-neutral-400 text-center leading-tight">
+                  <SkillIcon iconUrl={skill.icon} className="w-6 h-6" />
+                  <span className="font-['var(--font-dm-serif)'] text-[10px] text-neutral-400 text-center leading-tight">
                     {skill.name}
                   </span>
                 </div>

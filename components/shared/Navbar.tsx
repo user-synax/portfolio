@@ -1,7 +1,7 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
 import { gsap } from '@/lib/gsap'
-import { Menu, X, Terminal } from 'lucide-react'
+import { Menu, X, Code } from 'lucide-react'
 import { TextScramble } from '@/components/shared/TextScramble'
 
 export default function Navbar() {
@@ -103,9 +103,10 @@ export default function Navbar() {
                 (window as any).handleLogoTap()
               }
             }}
+            aria-label="Navigate to hero section"
             className="flex items-center gap-2 text-[#f0ede6] hover:text-[#c8a97e] transition-colors relative z-10"
           >
-            <Terminal className="w-8 h-8" />
+            <Code className="w-8 h-8" />
             <span className="font-['var(--font-dm-serif)'] text-2xl">Ayush</span>
           </a>
           
@@ -114,6 +115,7 @@ export default function Navbar() {
             <a
               href="#about"
               onClick={(e) => handleSmoothScroll(e, '#about')}
+              aria-label="Navigate to about section"
               className="font-['var(--font-dm-mono)'] text-xs uppercase tracking-wider text-neutral-400 hover:text-[#f0ede6] transition-colors"
             >
               <TextScramble text="About" />
@@ -121,6 +123,7 @@ export default function Navbar() {
             <a
               href="#projects"
               onClick={(e) => handleSmoothScroll(e, '#projects')}
+              aria-label="Navigate to projects section"
               className="font-['var(--font-dm-mono)'] text-xs uppercase tracking-wider text-neutral-400 hover:text-[#f0ede6] transition-colors"
             >
               <TextScramble text="Work" />
@@ -128,15 +131,10 @@ export default function Navbar() {
             <a
               href="#contact"
               onClick={(e) => handleSmoothScroll(e, '#contact')}
+              aria-label="Navigate to contact section"
               className="font-['var(--font-dm-mono)'] text-xs uppercase tracking-wider text-neutral-400 hover:text-[#f0ede6] transition-colors"
             >
               <TextScramble text="Contact" />
-            </a>
-            <a
-              href="/terminal"
-              className="font-['var(--font-dm-mono)'] text-xs uppercase tracking-wider text-neutral-400 hover:text-[#f0ede6] transition-colors"
-            >
-              <TextScramble text="Terminal" />
             </a>
             <a
               href="https://github.com/user-synax"
@@ -180,6 +178,7 @@ export default function Navbar() {
             <a
               href="#about"
               onClick={(e) => handleSmoothScroll(e, '#about')}
+              aria-label="Navigate to about section"
               className="mobile-nav-link font-['var(--font-dm-serif)'] text-6xl md:text-7xl text-[#f0ede6] hover:text-[#c8a97e] transition-colors"
               style={{
                 WebkitBackgroundClip: 'text',
@@ -193,6 +192,7 @@ export default function Navbar() {
             <a
               href="#projects"
               onClick={(e) => handleSmoothScroll(e, '#projects')}
+              aria-label="Navigate to projects section"
               className="mobile-nav-link font-['var(--font-dm-serif)'] text-6xl md:text-7xl text-[#f0ede6] hover:text-[#c8a97e] transition-colors"
               style={{
                 WebkitBackgroundClip: 'text',
@@ -206,6 +206,7 @@ export default function Navbar() {
             <a
               href="#contact"
               onClick={(e) => handleSmoothScroll(e, '#contact')}
+              aria-label="Navigate to contact section"
               className="mobile-nav-link font-['var(--font-dm-serif)'] text-6xl md:text-7xl text-[#f0ede6] hover:text-[#c8a97e] transition-colors"
               style={{
                 WebkitBackgroundClip: 'text',
@@ -217,21 +218,10 @@ export default function Navbar() {
               Contact
             </a>
             <a
-              href="/terminal"
-              className="mobile-nav-link font-['var(--font-dm-serif)'] text-6xl md:text-7xl text-[#f0ede6] hover:text-[#c8a97e] transition-colors"
-              style={{
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundImage: 'linear-gradient(90deg, #f0ede6 50%, transparent 50%)',
-                backgroundSize: '200% 100%',
-              }}
-            >
-              Terminal
-            </a>
-            <a
               href="https://github.com/user-synax"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="Visit GitHub profile"
               className="mobile-nav-link flex items-center justify-center gap-4 font-['var(--font-dm-serif)'] text-6xl md:text-7xl text-[#f0ede6] hover:text-[#c8a97e] transition-colors"
               style={{
                 WebkitBackgroundClip: 'text',

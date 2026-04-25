@@ -1,6 +1,6 @@
 "use client";
 import React, { useRef, useEffect, useState } from "react";
-import { motion } from "motion/react";
+import { gsap } from "@/lib/gsap";
 import { cn } from "@/lib/utils";
 
 export const TextHoverEffect = ({
@@ -18,16 +18,21 @@ export const TextHoverEffect = ({
   const [cursor, setCursor] = useState({ x: 0, y: 0 });
   const [hovered, setHovered] = useState(false);
   const [maskPosition, setMaskPosition] = useState({ cx: "50%", cy: "50%" });
+  const maskRef = useRef<SVGRadialGradientElement>(null);
 
   useEffect(() => {
     if (svgRef.current && cursor.x !== null && cursor.y !== null) {
       const svgRect = svgRef.current.getBoundingClientRect();
       const cxPercentage = ((cursor.x - svgRect.left) / svgRect.width) * 100;
       const cyPercentage = ((cursor.y - svgRect.top) / svgRect.height) * 100;
-      setMaskPosition({
-        cx: `${cxPercentage}%`,
-        cy: `${cyPercentage}%`,
-      });
+      
+      if (maskRef.current) {
+        gsap.to(maskRef.current, {
+          attr: { cx: `${cxPercentage}%`, cy: `${cyPercentage}%` },
+          duration: 0.3,
+          ease: "power2.out"
+        });
+      }
     }
   }, [cursor]);
 
@@ -93,17 +98,17 @@ export const TextHoverEffect = ({
           )}
         </linearGradient>
 
-        <motion.radialGradient
+        <radialGradient
+          ref={maskRef}
           id="revealMask"
           gradientUnits="userSpaceOnUse"
           r="40%"
-          initial={{ cx: "50%", cy: "50%" }}
-          animate={maskPosition}
-          transition={{ duration: duration ?? 0, ease: "easeOut" }}
+          cx="50%"
+          cy="50%"
         >
           <stop offset="0%" stopColor="white" />
           <stop offset="100%" stopColor="black" />
-        </motion.radialGradient>
+        </radialGradient>
         <mask id="textMask">
           <rect
             x="0"

@@ -108,7 +108,8 @@ export default function EasterEgg() {
 
   // Expose logo tap handler to window for Navbar to use
   useEffect(() => {
-    (window as any).handleLogoTap = handleLogoTap
+    const handleLogoTapGlobal = () => handleLogoTap()
+    ;(window as any).handleLogoTap = handleLogoTapGlobal
     return () => {
       delete (window as any).handleLogoTap
     }

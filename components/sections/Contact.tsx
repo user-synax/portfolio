@@ -182,6 +182,7 @@ export default function Contact() {
               </p>
               <a
                 href="mailto:user-synax@proton.me"
+                aria-label="Send email to user-synax@proton.me"
                 className="flex items-center gap-3 text-neutral-300 hover:text-[#c8a97e] transition-colors"
               >
                 <Mail className="w-5 h-5" />
@@ -198,6 +199,7 @@ export default function Contact() {
                   href="https://github.com/user-synax"
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label="Visit GitHub profile"
                   className="flex items-center gap-2 text-neutral-400 hover:text-[#f0ede6] transition-colors"
                 >
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -209,6 +211,7 @@ export default function Contact() {
                   href="https://wa.me/918826343179"
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label="Contact via WhatsApp"
                   className="flex items-center gap-2 text-neutral-400 hover:text-[#25D366] transition-colors"
                 >
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -285,6 +288,7 @@ export default function Contact() {
                 <Button
                   type="submit"
                   disabled={isSubmitting}
+                  aria-label="Send contact form message"
                   className="w-full bg-[#f0ede6] text-[#0a0a0a] hover:bg-[#c8a97e] font-['var(--font-dm-mono)'] text-xs uppercase tracking-wider py-6 rounded-lg hover:shadow-lg hover:shadow-[#c8a97e]/20 transition-all"
                 >
                   {isSubmitting ? (
@@ -327,6 +331,7 @@ export default function Contact() {
                       }
                     )
                   }}
+                  aria-label="Send another message"
                   className="bg-[#f0ede6] text-[#0a0a0a] hover:bg-[#c8a97e] font-['var(--font-dm-mono)'] text-xs uppercase tracking-wider rounded-lg"
                 >
                   Send Another Message

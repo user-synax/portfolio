@@ -4,6 +4,7 @@ import { gsap } from '@/lib/gsap'
 
 export default function CustomCursor() {
   const [isMobile, setIsMobile] = useState(false)
+  const [cursorText, setCursorText] = useState('')
   const dotRef = useRef<HTMLDivElement>(null)
   const circleRef = useRef<HTMLDivElement>(null)
   const x = useRef(0)
@@ -58,17 +59,13 @@ export default function CustomCursor() {
         if (dotRef.current) {
           gsap.to(dotRef.current, { opacity: 0, duration: 0.2 })
         }
+        setCursorText('View →')
         if (circleRef.current) {
           gsap.to(circleRef.current, {
             scale: 2.2,
             backgroundColor: '#0a0a0a',
             borderColor: '#c8a97e',
             duration: 0.3,
-            onComplete: () => {
-              if (circleRef.current) {
-                circleRef.current.innerHTML = '<span class="font-mono text-[8px] text-[#f0ede6]">View →</span>'
-              }
-            }
           })
         }
       } else if (isInteractive) {
@@ -90,17 +87,13 @@ export default function CustomCursor() {
       if (dotRef.current) {
         gsap.to(dotRef.current, { opacity: 1, duration: 0.2 })
       }
+      setCursorText('')
       if (circleRef.current) {
         gsap.to(circleRef.current, {
           scale: 1,
           backgroundColor: 'transparent',
           borderColor: 'rgba(240, 237, 230, 0.3)',
           duration: 0.3,
-          onComplete: () => {
-            if (circleRef.current) {
-              circleRef.current.innerHTML = ''
-            }
-          }
         })
       }
     }
@@ -146,7 +139,13 @@ export default function CustomCursor() {
         ref={circleRef}
         className="fixed top-0 left-0 w-[36px] h-[36px] border border-[#f0ede6]/30 rounded-full pointer-events-none z-[9998] flex items-center justify-center"
         style={{ transform: 'translate(-50%, -50%)' }}
-      />
+      >
+        {cursorText && (
+          <span className="font-mono text-[8px] text-[#f0ede6]">
+            {cursorText}
+          </span>
+        )}
+      </div>
     </>
   )
 }

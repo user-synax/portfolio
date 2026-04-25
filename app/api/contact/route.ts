@@ -8,9 +8,14 @@ export async function POST(request: Request) {
     const body = await request.json();
     const { name, email, message } = body;
 
+    const contactEmail = process.env.CONTACT_EMAIL;
+    if (!contactEmail) {
+      return NextResponse.json({ error: 'CONTACT_EMAIL environment variable not set' }, { status: 500 });
+    }
+
     const { data, error } = await resend.emails.send({
       from: 'onboarding@resend.dev',
-      to: process.env.CONTACT_EMAIL || 'usersynax@gmail.com',
+      to: contactEmail,
       subject: `New Contact from ${name}`,
       html: `
         <p><strong>Name:</strong> ${name}</p>

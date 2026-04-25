@@ -346,6 +346,7 @@ export default function Projects() {
                             href={selectedProject.link}
                             target="_blank"
                             rel="noopener noreferrer"
+                            aria-label={`View live demo of ${selectedProject.title}`}
                             className="px-6 py-3 bg-[#f0ede6] text-[#0a0a0a] font-['var(--font-dm-mono)'] text-xs uppercase tracking-wider rounded-sm hover:bg-[#c8a97e] transition-colors text-center"
                           >
                             View Live
@@ -356,6 +357,7 @@ export default function Projects() {
                             href={selectedProject.sourceCode}
                             target="_blank"
                             rel="noopener noreferrer"
+                            aria-label={`View source code of ${selectedProject.title}`}
                             className="px-6 py-3 border border-neutral-700 text-neutral-400 font-['var(--font-dm-mono)'] text-xs uppercase tracking-wider rounded-sm hover:border-neutral-500 hover:text-neutral-300 transition-colors text-center"
                           >
                             Source Code
@@ -418,6 +420,7 @@ export default function Projects() {
                   href="https://wa.me/918826343179"
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label="Hire me on WhatsApp"
                   className="flex items-center gap-2 px-6 py-3 bg-[#25D366] text-black font-['var(--font-dm-mono)'] text-xs uppercase tracking-wider rounded-sm hover:bg-[#20bd5a] transition-colors"
                 >
                   <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">

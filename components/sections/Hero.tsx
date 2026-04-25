@@ -127,6 +127,7 @@ export default function Hero() {
           <a
             ref={magnetic.ref}
             href="#projects"
+            aria-label="View my projects"
             className="group relative rounded-sm bg-[#f0ede6] px-6 py-3 font-['var(--font-dm-mono)'] text-xs uppercase tracking-wider text-[#0a0a0a] transition-all hover:bg-[#c8a97e] hover:shadow-lg hover:shadow-[#c8a97e]/20 hover:-translate-y-0.5"
           >
             <span ref={magnetic.innerRef} className="relative z-10">View work</span>
@@ -135,6 +136,7 @@ export default function Hero() {
 
           <a
             href="#contact"
+            aria-label="Get in touch with me"
             className="font-['var(--font-dm-mono)'] text-xs uppercase tracking-wider text-neutral-500 transition-colors hover:text-[#f0ede6] hover:underline decoration-[#c8a97e] underline-offset-4"
           >
         Get in touch →
