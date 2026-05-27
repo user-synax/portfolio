@@ -1,3 +1,7 @@
+/**
+ * Configuration for the Achievements section and dedicated viewer pages.
+ * Add new achievements by adding an object to the ACHIEVEMENTS_CONFIG array.
+ */
 export interface Achievement {
   id: string;
   title: string;
