@@ -336,7 +336,7 @@ export default function About() {
         { name: 'MongoDB', icon: 'https://skillicons.dev/icons?i=mongodb' },
         { name: 'GitHub', icon: 'https://skillicons.dev/icons?i=github' },
         { name: 'Linux', icon: 'https://skillicons.dev/icons?i=linux' },
-        { name: 'npm', icon: 'https://skillicons.dev/icons?i=npm' },
+        { name: 'pnpm', icon: 'https://skillicons.dev/icons?i=pnpm' },
         { name: 'VSCode', icon: 'https://skillicons.dev/icons?i=vscode' },
       ]
     },
@@ -358,7 +358,7 @@ export default function About() {
         { name: 'Next.js', icon: 'https://skillicons.dev/icons?i=nextjs' },
         { name: 'Node.js', icon: 'https://skillicons.dev/icons?i=nodejs' },
         { name: 'Express', icon: 'https://skillicons.dev/icons?i=express' },
-        { name: 'Bootstrap', icon: 'https://skillicons.dev/icons?i=bootstrap' },
+        { name: 'Bun', icon: 'https://skillicons.dev/icons?i=bun' },
       ]
     },
     design: {
@@ -366,7 +366,7 @@ export default function About() {
       items: [
         { name: 'TailwindCSS', icon: 'https://skillicons.dev/icons?i=tailwind' },
         { name: 'Figma', icon: 'https://skillicons.dev/icons?i=figma' },
-        { name: 'GSAP', icon: 'https://skillicons.dev/icons?i=greensock' },
+        { name: 'Docker', icon: 'https://skillicons.dev/icons?i=docker' },
         { name: 'Photoshop', icon: 'https://skillicons.dev/icons?i=ps' },
       ]
     }
@@ -409,13 +409,13 @@ export default function About() {
           {/* Right column - bio */}
           <div className="lg:col-span-7 flex flex-col justify-center">
             <p className="bio-paragraph font-['var(--font-dm-mono)'] text-base leading-relaxed text-neutral-400 mb-6">
-              I'm a full-stack developer with a passion for creating elegant, user-centric digital products. My journey began with a curiosity about how things work on the web, which evolved into a career dedicated to crafting seamless experiences.
+              I&apos;m a full-stack developer with a passion for creating elegant, user-centric digital products. My journey began with a curiosity about how things work on the web, which evolved into a career dedicated to crafting seamless experiences.
             </p>
             <p className="bio-paragraph font-['var(--font-dm-mono)'] text-base leading-relaxed text-neutral-400 mb-6">
               I specialize in modern web technologies, with expertise in React, Next.js, and TypeScript. I believe in writing clean, maintainable code and designing systems that scale.
             </p>
             <p className="bio-paragraph font-['var(--font-dm-mono)'] text-base leading-relaxed text-neutral-400">
-              When I'm not coding, you'll find me exploring new design trends, contributing to open-source projects, or sharing knowledge with the developer community.
+              When I&apos;m not coding, you&apos;ll find me exploring new design trends, contributing to open-source projects, or sharing knowledge with the developer community.
             </p>
           </div>
         </div>
