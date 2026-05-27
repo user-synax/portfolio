@@ -1,0 +1,8 @@
+<svg width="1200" height="848" viewBox="0 0 1200 848" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="848" fill="#0A0A0A"/>
+  <rect x="50" y="50" width="1100" height="748" stroke="#1A1A1A" stroke-width="2"/>
+  <rect x="70" y="70" width="1060" height="708" stroke="#1A1A1A" stroke-width="1"/>
+  <text x="600" y="400" font-family="serif" font-size="60" fill="white" text-anchor="middle">INTERNSHIP CERTIFICATE</text>
+  <text x="600" y="480" font-family="monospace" font-size="24" fill="#666666" text-anchor="middle">FCIT Institute • 2026</text>
+  <path d="M550 600 L650 600 M600 550 L600 650" stroke="#10b981" stroke-width="2" opacity="0.5"/>
+</svg>
