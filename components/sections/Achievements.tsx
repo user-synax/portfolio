@@ -15,7 +15,8 @@ import {
 import { Award, ExternalLink, X, Maximize2 } from "lucide-react";
 import { TextScramble } from "@/components/shared/TextScramble";
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import { ACHIEVEMENTS_CONFIG, Achievement } from "@/lib/achievements";
 
 export default function Achievements() {
@@ -242,22 +243,20 @@ export default function Achievements() {
 
                                                 {selectedAchievement?.link && (
                                                     <div className="mt-12">
-                                                        <Button
-                                                            asChild
-                                                            className="w-full md:w-auto px-12 h-16 text-lg font-mono uppercase tracking-widest rounded-full transition-all hover:scale-[1.02] active:scale-[0.98]"
+                                                        <a
+                                                            href={
+                                                                selectedAchievement.link
+                                                            }
+                                                            target="_blank"
+                                                            rel="noopener noreferrer"
+                                                            className={cn(
+                                                                buttonVariants(),
+                                                                "w-full md:w-auto px-12 h-16 text-lg font-mono uppercase tracking-widest rounded-full transition-all hover:scale-[1.02] active:scale-[0.98]",
+                                                            )}
                                                         >
-                                                            <a
-                                                                href={
-                                                                    selectedAchievement.link
-                                                                }
-                                                                target="_blank"
-                                                                rel="noopener noreferrer"
-                                                            >
-                                                                Verify
-                                                                Certificate{" "}
-                                                                <ExternalLink className="ml-2 w-5 h-5" />
-                                                            </a>
-                                                        </Button>
+                                                            Verify Certificate{" "}
+                                                            <ExternalLink className="ml-2 w-5 h-5" />
+                                                        </a>
                                                     </div>
                                                 )}
                                             </div>
